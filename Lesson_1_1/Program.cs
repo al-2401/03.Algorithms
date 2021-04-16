@@ -12,19 +12,24 @@ namespace Lesson_1_1
             public Exception ExpectedException { get; set; }
         }
 
-        static void TestCheckPrimeNumber(TestCase testCase)
+        static void TestCheckPrimeNumber(int n, bool expected, Exception expectedException)
         {
+            var testCase = new TestCase();
+            testCase.N = n;
+            testCase.Expected = expected;
+            testCase.ExpectedException = expectedException;
+
             try
             {
                 var actual = CheckPrimeNumber(testCase.N);
-                Console.Write($"Тест № {testCase.Id} на вход подаем {testCase.N} ожидаем {testCase.Expected}");
+                Console.Write($"На вход подаем {testCase.N} ожидаем {testCase.Expected}");
                 if (actual == testCase.Expected)
                 {
                     Console.WriteLine(" - VALID TEST");
                 }
                 else
                 {
-                    Console.WriteLine(" - INVALID TEST Expected {testCase.Expected}");
+                    Console.WriteLine(" - INVALID TEST");
                 }
             }
             catch (Exception ex)
@@ -35,7 +40,7 @@ namespace Lesson_1_1
                     //какой тип исключения указать в функции CheckPrimeNumber
                     //чтобы обработать в этом тесте
                     //TODO add type exception tests;
-                    Console.WriteLine(" - VALID TEST");
+                    Console.WriteLine($" - VALID TEST {testCase.ExpectedException}");
                 }
                 else
                 {
@@ -79,41 +84,11 @@ namespace Lesson_1_1
             else
                 Console.WriteLine($"Число {n} не является простым\n");
 
-            var testCase1 = new TestCase();
-            testCase1.Id = 1;
-            testCase1.N = 1;
-            testCase1.Expected = false;
-            testCase1.ExpectedException = null;
-
-            var testCase2 = new TestCase();
-            testCase2.Id = 2;
-            testCase2.N = 2;
-            testCase2.Expected = true;
-            testCase2.ExpectedException = null;
-
-            var testCase3 = new TestCase();
-            testCase3.Id = 3;
-            testCase3.N = 4;
-            testCase3.Expected = false;
-            testCase3.ExpectedException = null;
-
-            var testCase4 = new TestCase();
-            testCase4.Id = 4;
-            testCase4.N = -5;
-            testCase4.Expected = true;
-            testCase4.ExpectedException = null;
-
-            var testCase5 = new TestCase();
-            testCase5.Id = 5;
-            testCase5.N = -6;
-            testCase5.Expected = false;
-            testCase5.ExpectedException = null;
-
-            TestCheckPrimeNumber(testCase1);
-            TestCheckPrimeNumber(testCase2);
-            TestCheckPrimeNumber(testCase3);
-            TestCheckPrimeNumber(testCase4);
-            TestCheckPrimeNumber(testCase5);
+            TestCheckPrimeNumber(1, false, null);
+            TestCheckPrimeNumber(2, true, null);
+            TestCheckPrimeNumber(4, false, null);
+            TestCheckPrimeNumber(-5, false, null);// указываем неправильное ожидание, для INVALID TEST
+            TestCheckPrimeNumber(-6, true, null); // указываем неправильное ожидание, для INVALID TEST
         }
     }
 }
