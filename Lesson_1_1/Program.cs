@@ -17,14 +17,14 @@ namespace Lesson_1_1
             try
             {
                 var actual = CheckPrimeNumber(testCase.N);
-
+                Console.Write($"Тест № {testCase.Id} на вход подаем {testCase.N} ожидаем {testCase.Expected}");
                 if (actual == testCase.Expected)
                 {
-                    Console.WriteLine($"Тест № {testCase.Id} - VALID TEST");
+                    Console.WriteLine(" - VALID TEST");
                 }
                 else
                 {
-                    Console.WriteLine($"Тест № {testCase.Id} - INVALID TEST Expected {testCase.Expected}");
+                    Console.WriteLine(" - INVALID TEST Expected {testCase.Expected}");
                 }
             }
             catch (Exception ex)
@@ -35,11 +35,11 @@ namespace Lesson_1_1
                     //какой тип исключения указать в функции CheckPrimeNumber
                     //чтобы обработать в этом тесте
                     //TODO add type exception tests;
-                    Console.WriteLine($"Тест № {testCase.Id} - VALID TEST");
+                    Console.WriteLine(" - VALID TEST");
                 }
                 else
                 {
-                    Console.WriteLine($"Тест № {testCase.Id} - INVALID TEST");
+                    Console.WriteLine(" - INVALID TEST");
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace Lesson_1_1
             {
                 //n = n > 0 ? n : n * -1;
                 n = Math.Abs(n);
-                if (n == 1) return false;
+                if (n == 0 || n == 1) return false;
                 var d = 0;
                 for (var i = 2; i < n; i++)
                 {
@@ -73,7 +73,7 @@ namespace Lesson_1_1
         }
         static void Main(string[] args)
         {
-            var n = 4;
+            var n = 0;
             if (CheckPrimeNumber(n))
                 Console.WriteLine($"Число {n} простое");
             else
